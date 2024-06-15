@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  font-family: "Montserrat";
+  min-height: 100vh;
+
+  h1, h2, h3 {
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 32px;
+    text-align: center;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    font-family: "Montserrat";
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+
+    main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+
+    button {
+      font-family: "Montserrat";
+      outline: 'none';
+      border: 'none';
+      display: inline-block;
+      line-height: 1;
+      font-size: 15px;
+      padding: 12px 24px;
+      color: #fff;
+      fill: #fff;
+      text-align: center;
+      transition: all .3s;
+      box-shadow: none;
+      text-decoration: none;
+      width: auto;
+      font-weight: 500;
+      background-color: #000000;
+      border-radius: 15px 15px 15px 15px;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    footer {
+      align-self: flex-end;
+      width: 100%;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      min-height: 173px;
+
+      .brand {
+        background-color: #000000;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+
+        div {
+          width: 100%;
+          max-width: 627px;
+          margin-right: 60px;
+        }
+      }
+
+      .policy {
+        background-color: #000000F7;
+        width: 100%;
+        min-height: 34px;
+
+        h3, p {
+          font-size: 14px;
+          margin-left: 12px;
+        }
+      }
+
+      h3 {
+        font-weight: 400;
+        font-size: 25px;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      width: 100%;
+      margin-top: 24px;
+      margin-bottom: 24px;
+
+      img {
+        margin-left: 40px;
+      }
+
+      div {
+        margin-right: 40px;
+      }
+    }
+
+    .main-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      max-width: 1254px;
+      gap: 20px;
+    }
+
+    .order-home {
+      padding: 18px 24px;
+    }
+  }
+}
