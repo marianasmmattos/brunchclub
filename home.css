@@ -4,12 +4,22 @@ html {
   font-family: "Montserrat";
   min-height: 100vh;
 
+  * {
+    box-sizing: border-box;
+    position: relative;
+  }
+
   h1, h2, h3 {
     font-family: "Montserrat";
     font-weight: 800;
-    font-size: 32px;
+    font-size: 24px;
     text-align: center;
     margin: 0;
+
+    @media screen and (min-width: 768px) {
+      display: 'block';
+      font-size: 32px;
+    }
   }
 
   p {
@@ -86,19 +96,47 @@ html {
         min-height: 34px;
 
         h3, p {
-          font-size: 14px;
+          font-size: 10px;
           margin-left: 12px;
+
+          @media screen and (min-width: 768px) {
+            font-size: 14px;
+          }
         }
       }
 
       h3 {
         font-weight: 400;
-        font-size: 25px;
+        font-size: 14px;
+
+        @media screen and (min-width: 768px) {
+          font-size: 26px;
+        }
+      }
+
+      p, span {
+        font-size: 12px;
+
+        @media screen and (min-width: 768px) {
+          font-size: 16px;
+        }
       }
 
       div {
         display: flex;
         align-items: center;
+      }
+
+      .brand-media {
+        flex-direction: column;
+        gap: 12px;
+        align-items: self-start;
+
+        p {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
       }
     }
 
@@ -117,6 +155,21 @@ html {
 
       div {
         margin-right: 40px;
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        gap: 4px;
+
+        a {
+          display: none;
+          
+          @media screen and (min-width: 768px) {
+            display: 'block';
+          }
+        }
       }
     }
 

@@ -1,0 +1,225 @@
+<html>
+  <head>
+    <title>BRUNCH CLUB</title>
+    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="./order.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+      <header class="header">
+        <img src='../images/logo.png' width="120px" height="66px">
+        <div class="header-content">
+          <a>Veja algumas avaliações</a>
+          <a>Redes sociais</a>
+          <button>Nos avalie</button>
+        </div>
+      </header>
+      <div style="height: 100%;align-self: flex-start; flex-direction: column; width: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 0px 40px 0px 40px">
+        <div class="main-order-header">
+          <h1>Cardápio</h1>
+          <div>
+            <p>3 items</p>
+          </div>
+        </div>
+        <div style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+          <div class="main-order">
+            <div style="display: flex; flex-direction: column; width: 100%; gap: 12px;">
+              <div class="card-container">
+                <div class="card">
+                  <img src='../images/first-meal.jpeg'>
+                  <div style="width: 100%;">
+                    <div class="card-content">
+                      <div class="card-header">
+                        <h2>Tostada</h2>
+                        <h3>$40.99</h3>
+                        <input style="display: none;" value="4099" id="tostada" />
+                      </div>
+                      <button id="add-tostada">
+                        Adicionar
+                        <img src='../images/add-icon.svg'>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-container">
+                <div class="card">
+                  <img src='../images/meal-second.jpeg'>
+                  <div style="width: 100%;">
+                    <div class="card-content">
+                      <div class="card-header">
+                        <h2>Brunch classic</h2>
+                        <h3>$25.99</h3>
+                        <input style="display: none;" value="2599" id="brunch-classic" />
+                      </div>
+                      <button id="add-brunch-classic">
+                        Adicionar
+                        <img src='../images/add-icon.svg'>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-container">
+                <div class="card">
+                  <img src='../images/third-meal.png'>
+                  <div style="width: 100%;">
+                    <div class="card-content">
+                      <div class="card-header">
+                        <h2>Fézin</h2>
+                        <h3>$2.99</h3>
+                        <input style="display: none;" value="299" id="fezin" />
+                      </div>
+                      <button id="add-fezin">
+                        Adicionar
+                        <img src='../images/add-icon.svg'>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-container">
+            <div class="order-header">
+              <h3>Resumo do pedido</h3>
+            </div>
+            <div class="order-resume">
+              <div style="margin-top: 24px; margin-bottom: 20px;">
+                <h2>
+                  Subtotal
+                </h2>
+                <p id="subtotal">
+                  $0.00
+                </p>
+              </div>
+              <div style="margin-bottom: 20px;">
+                <h2>
+                  Taxa de serviço
+                </h2>
+                <p id="taxa-servico">
+                  $0.00
+                </p>
+              </div>
+              <div style="margin-bottom: 20px;">
+                <h2>
+                  Total
+                </h2>
+                <p id="total">
+                  $0.00
+                </p>
+              </div>
+            </div>
+            <div class="order-button">
+              <button disabled id="add-order">
+                Fazer pedido
+                <img src='../images/arrow.svg'>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="brand">
+          <img src='../images/logo-dark.png' width="180px" height="96px">
+          <div class="brand-media">
+            <h3>BRUNCH CLUB</h3>
+            <p>
+              <span>
+                <img src='../images/instagram-logo.svg' width="15px" height="15px">
+              </span>
+              @brunch_club
+            </p>
+            <p>
+              <span>
+                <img src='../images/location-logo.png' width="15px" height="15px">
+              </span>
+              R. Fernandes Tourinho 512, Savassi, Belo Horizonte 30130-140
+            </p>
+          </div>
+        </div>
+        <div class="policy">
+          <p>Brunch Club Copyright ® 2024 - Todos os direitos reservados</p>
+          <p>Política de privacidade</p>
+        </div>
+      </footer>
+      <script>
+        const order = new Set();
+        const items = {
+            'add-tostada': 'tostada',
+            'add-brunch-classic': 'brunch-classic',
+            'add-fezin': 'fezin'
+        };
+
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemId = items[button.id];
+                const itemValue = Number(document.querySelector(`#${itemId}`).value);
+
+                if (order.has(itemId)) {
+                    order.delete(itemId);
+                    updateButtonState(button, false);
+                } else {
+                    order.add(itemId);
+                    updateButtonState(button, true);
+                }
+
+                updateTotals();
+            });
+        });
+
+        document.getElementById('add-order').addEventListener('click', () => {
+            storeOrderDetails();
+        });
+
+        function updateTotals() {
+            let subtotal = 0;
+
+            order.forEach(itemId => {
+                subtotal += parseInt(document.getElementById(itemId).value);
+            });
+
+            const serviceTax = Math.round(subtotal * 0.10);
+            const total = subtotal + serviceTax;
+
+            document.getElementById('subtotal').innerText = `$${subtotal / 100}`;
+            document.getElementById('taxa-servico').innerText = `$${serviceTax / 100}`;
+            document.getElementById('total').innerText = `$${total / 100}`;
+
+            const addOrderButton = document.getElementById('add-order');
+            addOrderButton.disabled = total === 0;
+        }
+
+        function updateButtonState(button, added) {
+            if (added) {
+                button.classList.add('added');
+                button.innerHTML = "<span>Remover</span><img src='../images/remove-icon.svg'>"
+            } else {
+                button.classList.remove('added');
+                button.innerHTML = "<span>Adicionar</span><img src='../images/add-icon.svg'>"
+            }
+        }
+        
+        function storeOrderDetails() {
+            let subtotal = parseInt(document.getElementById('subtotal').innerText.split(' ')[1]);
+            let serviceTax = parseInt(document.getElementById('taxa-servico').innerText.split(' ')[2]);
+            let total = parseInt(document.getElementById('total').innerText.split(' ')[1]);
+
+            const orderDetails = {
+                items: Array.from(order),
+                subtotal: subtotal,
+                serviceTax: serviceTax,
+                total: total
+            };
+
+            localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+            alert('Pedido realizado!');
+            window.location.href = './confirmation.html';
+        }
+    </script>
+    </main>
+  </body>
+</html>

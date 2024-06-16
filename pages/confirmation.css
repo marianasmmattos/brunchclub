@@ -1,0 +1,32 @@
+.main-content {
+    box-sizing: border-box;
+    height: 422px;
+    background: #FAFAF5;
+    border: 2px solid #E6E6E6;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+
+    h3 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 12px;
+    }
+
+    div {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .main-description {
+        margin-top: 24px;
+        p {
+            max-width: 200px;
+        }
+    }
+}
